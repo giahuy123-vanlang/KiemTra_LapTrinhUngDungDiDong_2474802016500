@@ -1,5 +1,6 @@
 package com.example.kiemtra_laptrinhungdungdidong_2474802016500
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Patterns
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnLogin: Button
@@ -46,7 +48,13 @@ class LoginActivity : AppCompatActivity() {
 
                 else -> {
                     tvStatus.setTextColor(Color.parseColor("#2E7D32"))
-                    tvStatus.text = "Đăng nhâp thành công!"
+                    tvStatus.text = "Xác thực thành công!"
+
+                    // Explicit Intent: LoginActivity -> ProfileActivity
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    intent.putExtra("email", email)
+                    startActivity(intent)
+                    // KHÔNG gọi finish() để nút Đăng xuất quay lại được màn Đăng nhập
                 }
             }
         }
